@@ -95,3 +95,22 @@ body.phase3 #backButton {
 body.phase3 #backButton:hover {
   background-color: rgba(255,255,255,0.4);
 }
+
+#trapMessage {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: red;
+  background-color: black;
+  padding: 30px;
+  animation: flash 0.5s infinite;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes flash {
+  0%   { color: red; background-color: black; }
+  50%  { color: black; background-color: red; }
+  100% { color: red; background-color: black; }
+}

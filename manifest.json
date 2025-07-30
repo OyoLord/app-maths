@@ -2,7 +2,7 @@
   "name": "Roue de la chance",
   "short_name": "Roue",
   "description": "Une application personnelle de roue de la chance avec des exercices TAGE MAGE et un timer respiratoire.",
-  "start_url": "index.html",
+  "start_url": "home.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#fdfdfd",
