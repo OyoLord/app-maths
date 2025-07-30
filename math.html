@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+  Fichier math.html – Génère un exercice de mathématiques de type TAGE MAGE à
+  chaque chargement. L'utilisateur peut afficher la réponse puis revenir à
+  la roue.
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" href="icon.png">
+  <title>Exercice de maths – TAGE MAGE</title>
+</head>
+<body>
+  <div id="exercise" role="region" aria-live="polite" style="margin: 20px; font-size: 1.2rem;"></div>
+  <button id="showAnswer">Afficher la réponse</button>
+  <div id="answer" style="margin-top: 20px; font-weight: bold; display: none;"></div>
+  <button id="backButton" style="display: block; margin-top: 30px;">Revenir à la roue</button>
+
+  <script src="script/math.js"></script>
+  <script>
+    // Enregistrement du service worker pour la PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>

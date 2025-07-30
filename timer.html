@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+  Fichier timer.html – Page « creepy » avec un timer en trois phases :
+  Inspirez, Bloquez, Soufflez. Les couleurs et la typographie sont volontairement
+  immersives et un bouton permet de revenir à la roue une fois la séquence
+  terminée.
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" href="icon.png">
+  <title>Respiration guidée</title>
+</head>
+<body class="phase1">
+  <div id="timerMessage" style="font-family: 'Courier New', monospace; font-size: 2rem; margin: 20px;"></div>
+  <button id="backButton" style="display: none; margin-top: 30px;">Retour à la roue</button>
+
+  <script src="script/timer.js"></script>
+  <script>
+    // Enregistrement du service worker pour la PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>

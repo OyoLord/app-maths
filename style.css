@@ -1,0 +1,97 @@
+/*
+ * style.css – Styles globaux pour l'application. Conçu pour être léger et
+ * facilement personnalisable. La mise en page est centrée et adaptative
+ * (mobile-first). Un design minimal est appliqué pour la roue et la page
+ * math, tandis que la page « timer » possède des couleurs distinctes pour
+ * chacune des phases.
+ */
+
+/* Réinitialisation de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fdfdfd;
+  color: #333;
+  text-align: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+canvas#wheelCanvas {
+  width: 80vmin;
+  height: 80vmin;
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+button {
+  appearance: none;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Styles pour la page de mathématiques */
+#exercise {
+  max-width: 90vw;
+  line-height: 1.4;
+}
+
+#answer {
+  color: #007bff;
+  font-size: 1.3rem;
+}
+
+/* Styles pour les phases du timer */
+body.phase1 {
+  background-color: #ffa500; /* orange */
+  color: #ffffff;
+}
+
+body.phase2 {
+  background-color: #b22222; /* rouge foncé */
+  color: #ffffff;
+}
+
+body.phase3 {
+  background-color: #228b22; /* vert */
+  color: #ffffff;
+}
+
+/* Bouton spécifique au timer */
+body.phase3 #backButton {
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+body.phase3 #backButton:hover {
+  background-color: rgba(255,255,255,0.4);
+}
