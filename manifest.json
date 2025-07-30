@@ -1,7 +1,7 @@
 {
   "name": "Roue de la fortune",
   "short_name": "Roue",
-  "description": "Une application PWA sombre avec une roue de fortune, des exercices PDF et un timer étrange.",
+  "description": "PWA sombre avec roue de la fortune, PDF de maths et timer étrange.",
   "start_url": "home.html",
   "scope": "./",
   "display": "standalone",

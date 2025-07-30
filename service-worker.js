@@ -1,12 +1,10 @@
 /*
- * service-worker.js – Service Worker basique pour permettre à l'application
- * de fonctionner hors ligne et de s'installer comme une PWA. Ce fichier
- * met en cache les ressources principales de l'application et sert les
- * fichiers en cache lorsqu'ils sont demandés. Si une ressource n'est pas
- * trouvée dans le cache, elle est récupérée depuis le réseau.
+ * service-worker.js – Met en cache les fichiers de l'application pour permettre
+ * un fonctionnement hors ligne. Les PDFs sont chargés en ligne au moment de
+ * l'ouverture et ne sont pas pré-cachés.
  */
 
-const CACHE_NAME = 'roue-cache-v1';
+const CACHE_NAME = 'my-app-cache-v1';
 const URLS_TO_CACHE = [
   './',
   './home.html',
@@ -21,35 +19,26 @@ const URLS_TO_CACHE = [
   './script/timer.js'
 ];
 
-// Installation : pré-cache toutes les ressources nécessaires.
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(URLS_TO_CACHE);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
   );
 });
 
-// Activation : supprimer les anciens caches si besoin.
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches.keys().then(names => Promise.all(
+      names.map(name => {
+        if (name !== CACHE_NAME) {
+          return caches.delete(name);
+        }
+      })
+    ))
   );
 });
 
-// Interception des requêtes : répondre avec le cache en priorité, sinon depuis le réseau.
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    caches.match(event.request).then(resp => resp || fetch(event.request))
   );
 });

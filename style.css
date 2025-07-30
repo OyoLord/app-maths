@@ -1,12 +1,4 @@
-/*
- * style.css – Styles globaux pour l'application. Conçu pour être léger et
- * facilement personnalisable. La mise en page est centrée et adaptative
- * (mobile-first). Un design minimal est appliqué pour la roue et la page
- * math, tandis que la page « timer » possède des couleurs distinctes pour
- * chacune des phases.
- */
-
-/* Réinitialisation de base */
+/* Réinitialisation */
 * {
   margin: 0;
   padding: 0;
@@ -16,106 +8,11 @@
 html, body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fdfdfd;
-  color: #333;
-  text-align: center;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-
-canvas#wheelCanvas {
-  width: 80vmin;
-  height: 80vmin;
-  max-width: 500px;
-  max-height: 500px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-button {
-  appearance: none;
-  background-color: #007bff;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  padding: 12px 24px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Styles pour la page de mathématiques */
-#exercise {
-  max-width: 90vw;
-  line-height: 1.4;
-}
-
-#answer {
-  color: #007bff;
-  font-size: 1.3rem;
-}
-
-/* Styles pour les phases du timer */
-body.phase1 {
-  background-color: #ffa500; /* orange */
-  color: #ffffff;
-}
-
-body.phase2 {
-  background-color: #b22222; /* rouge foncé */
-  color: #ffffff;
-}
-
-body.phase3 {
-  background-color: #228b22; /* vert */
-  color: #ffffff;
-}
-
-/* Bouton spécifique au timer */
-body.phase3 #backButton {
-  background-color: rgba(255,255,255,0.2);
-  color: #fff;
-  border: 1px solid #fff;
-}
-
-body.phase3 #backButton:hover {
-  background-color: rgba(255,255,255,0.4);
-}
-
-#trapMessage {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: red;
-  background-color: black;
-  padding: 30px;
-  animation: flash 0.5s infinite;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes flash {
-  0%   { color: red; background-color: black; }
-  50%  { color: black; background-color: red; }
-  100% { color: red; background-color: black; }
-}
-
-/* Thème sombre */
+/* Corps avec thème sombre */
 body.dark {
   background-color: #0d0d0d;
   color: #e0e0e0;
@@ -124,9 +21,10 @@ body.dark {
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* Conteneurs */
+/* Conteneurs génériques */
 .container, .wheel-container, .math-container, .timer-container {
   display: flex;
   flex-direction: column;
@@ -137,24 +35,50 @@ body.dark {
   padding: 20px;
 }
 
+/* Titres et sous-titres */
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #a0a0a0;
+}
+
 /* Boutons */
 button.primary, button.secondary {
   background-color: #1e1e1e;
   color: #ffffff;
   border: 2px solid #444;
   padding: 12px 24px;
-  border-radius: 8px;
   margin-top: 20px;
+  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 button.primary:hover, button.secondary:hover {
   background-color: #333;
   border-color: #555;
 }
 
-/* Pointeur de la roue (placé via CSS) */
-#wheelCanvas { background-color: #1a1a1a; }
+/* Styles pour la roue */
+.wheel-container { position: relative; }
+
+canvas#wheelCanvas {
+  width: 90vmin;
+  height: 90vmin;
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Pointeur triangulaire au-dessus de la roue */
 #pointer {
   position: absolute;
   top: calc(50% - 45vmin);
@@ -168,13 +92,42 @@ button.primary:hover, button.secondary:hover {
   z-index: 2;
 }
 
-/* PDF et timer */
-.math-container .timer { font-size: 1.5rem; margin-bottom: 15px; }
-.pdf-wrapper { width: 90vw; height: 60vh; max-width: 600px; background-color: #1a1a1a; border: 1px solid #444; overflow: hidden; }
-.pdf-wrapper iframe { width: 100%; height: 100%; border: none; }
+/* Styles pour la page maths */
+.math-container .timer {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
 
-/* Phases du timer (affichées dans timer.js) */
+.pdf-wrapper {
+  width: 90vw;
+  height: 60vh;
+  max-width: 600px;
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  overflow: hidden;
+}
+
+.pdf-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Couleurs pour les phases du timer */
 body.phase-inhale { background-color: #ff7f00; color: #ffffff; }
 body.phase-hold   { background-color: #b22222; color: #ffffff; }
 body.phase-exhale { background-color: #228b22; color: #ffffff; }
 
+/* Texte du piège (clignotement géré par timer.js) */
+#trapMessage {
+  font-size: 3rem;
+  color: #ff0000;
+  animation: flash 0.6s infinite;
+}
+
+/* Animation flash pour FULL PIÈGE */
+@keyframes flash {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}

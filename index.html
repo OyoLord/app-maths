@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
-  index.html – Page de la roue de la fortune. La roue est dessinée sur un
-  canvas et comporte un pointeur clairement visible. Lorsque l'utilisateur
-  clique pour lancer la roue, une animation se déclenche et un son peut
-  être joué. Le type de résultat (Maths ou Timer) détermine la redirection
-  vers math.html ou timer.html. Le thème est sombre et adapté aux mobiles.
--->
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -14,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png"><!-- changez ce nom si besoin -->
   <title>Roue de la fortune</title>
 </head>
 <body class="dark">
@@ -24,16 +17,13 @@
     <button id="spinButton" class="primary">Tourner la roue</button>
   </div>
 
-  <!-- Élément audio pour le son de la roue.
-       Remplacez le chemin du fichier audio ci-dessous par votre propre fichier.
-       Par exemple : <source src="wheel-spin.mp3" type="audio/mpeg"> -->
+  <!-- Element audio : indiquez ici le chemin de votre fichier MP3 -->
   <audio id="spinSound">
     <source src="" type="audio/mpeg">
   </audio>
 
   <script src="script/wheel.js"></script>
   <script>
-    // Enregistrement du service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }

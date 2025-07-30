@@ -1,33 +1,37 @@
-const trap = document.getElementById("trapMessage");
-const timerMessage = document.getElementById("timerMessage");
-const backButton = document.getElementById("backButton");
-
-// Affiche le piège pendant 3 secondes
-setTimeout(() => {
-  trap.style.display = "none";
-  timerMessage.style.display = "block";
-  runBreathingTimer();
-}, 3000);
-
-function runBreathingTimer() {
-  const phase1 = Math.floor(Math.random() * 10) + 2;
-  const phase2 = Math.floor(Math.random() * 12) + 5;
-
-  document.body.className = "phase-inhale";
-  timerMessage.textContent = "Inspirez";
+/*
+ * script/timer.js – Affiche "FULL PIÈGE" pendant 3 s, puis un cycle
+ * de respiration : Inhale (1–5 s), Hold (1–10 s), Exhale. Le bouton de retour
+ * apparaît 3 s après le début de l'expiration.
+ */
+window.addEventListener('load', () => {
+  const trapEl   = document.getElementById('trapMessage');
+  const msgEl    = document.getElementById('timerMessage');
+  const backBtn  = document.getElementById('backButton');
 
   setTimeout(() => {
-    document.body.className = "phase-hold";
-    timerMessage.textContent = "Bloquez";
+    trapEl.style.display = 'none';
+    msgEl.style.display  = 'block';
+    runCycle();
+  }, 3000);
 
+  function runCycle() {
+    const inhale = Math.floor(Math.random() * 5) + 1; // 1–5 s
+    document.body.className = 'phase-inhale';
+    msgEl.textContent = 'Inhale';
     setTimeout(() => {
-      document.body.className = "phase-exhale";
-      timerMessage.textContent = "Soufflez";
-
-      backButton.style.display = "block";
-      backButton.onclick = () => window.location.href = "index.html";
-
-    }, phase2 * 1000);
-
-  }, phase1 * 1000);
-}
+      const hold = Math.floor(Math.random() * 10) + 1; // 1–10 s
+      document.body.className = 'phase-hold';
+      msgEl.textContent = 'Hold';
+      setTimeout(() => {
+        document.body.className = 'phase-exhale';
+        msgEl.textContent = 'Exhale';
+        setTimeout(() => {
+          backBtn.style.display = 'inline-block';
+          backBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+          });
+        }, 3000);
+      }, hold * 1000);
+    }, inhale * 1000);
+  }
+});
