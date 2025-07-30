@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <!--
-  Fichier index.html – Page principale de la roue de la chance pour l'application PWA.
-
-  Pour changer l'icône de l'application, remplacez le fichier « icon.png » situé
-  à la racine du dossier et mettez à jour les propriétés « icons » du fichier
-  manifest.json si nécessaire. Cette application est conçue pour être ajoutée
-  à l'écran d'accueil d'un iPhone et fonctionner en plein écran sans barre
-  d'adresse.
+  index.html – Page de la roue de la fortune. La roue est dessinée sur un
+  canvas et comporte un pointeur clairement visible. Lorsque l'utilisateur
+  clique pour lancer la roue, une animation se déclenche et un son peut
+  être joué. Le type de résultat (Maths ou Timer) détermine la redirection
+  vers math.html ou timer.html. Le thème est sombre et adapté aux mobiles.
 -->
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
-  <!-- Permet l'affichage plein écran sur iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <link rel="apple-touch-icon" href="icon.png">
-  <title>Roue de la chance</title>
+  <title>Roue de la fortune</title>
 </head>
-<body>
-  <canvas id="wheelCanvas" width="500" height="500" aria-label="Roue de la chance"></canvas>
-  <button id="spinButton">Tourner la roue</button>
+<body class="dark">
+  <div class="wheel-container">
+    <div id="pointer"></div>
+    <canvas id="wheelCanvas" width="500" height="500" aria-label="Roue de la fortune"></canvas>
+    <button id="spinButton" class="primary">Tourner la roue</button>
+  </div>
+
+  <!-- Élément audio pour le son de la roue.
+       Remplacez le chemin du fichier audio ci-dessous par votre propre fichier.
+       Par exemple : <source src="wheel-spin.mp3" type="audio/mpeg"> -->
+  <audio id="spinSound">
+    <source src="" type="audio/mpeg">
+  </audio>
 
   <script src="script/wheel.js"></script>
   <script>
-    // Enregistrement du service worker pour activer le mode hors ligne et le mode
-    // installation sur écran d'accueil. Le service worker se trouve dans
-    // service-worker.js à la racine de l'application.
+    // Enregistrement du service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }

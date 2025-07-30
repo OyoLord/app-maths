@@ -1,12 +1,12 @@
 {
-  "name": "Roue de la chance",
+  "name": "Roue de la fortune",
   "short_name": "Roue",
-  "description": "Une application personnelle de roue de la chance avec des exercices TAGE MAGE et un timer respiratoire.",
+  "description": "Une application PWA sombre avec une roue de fortune, des exercices PDF et un timer étrange.",
   "start_url": "home.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fdfdfd",
-  "theme_color": "#fdfdfd",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
   "icons": [
     {
       "src": "icon.png",

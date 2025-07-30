@@ -11,7 +11,7 @@ setTimeout(() => {
 
 function runBreathingTimer() {
   const phase1 = Math.floor(Math.random() * 10) + 2;
-  const phase2 = Math.floor(Math.random() * 15) + 5;
+  const phase2 = Math.floor(Math.random() * 12) + 5;
 
   document.body.className = "phase1";
   timerMessage.textContent = "Inspirez";
