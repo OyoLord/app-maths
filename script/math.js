@@ -1,44 +1,32 @@
-/*
- * script/math.js – Sélectionne un fichier PDF au hasard dans le dossier pdfs/,
- * l'affiche dans un iframe et lance un chronomètre infini. Le bouton
- * "Retour à la roue" renvoie à index.html.
- */
-
-// Ajoutez ici le nom de vos fichiers PDF (ex : ['ex1.pdf','ex2.pdf','ex3.pdf'])
-const pdfFiles = [
-  pdfs/exercice1.pdf
+// Liste des PDF disponibles dans le dossier /pdfs/
+const pdfs = [
+  "pdfs/exercice1.pdf",
 ];
 
-(function() {
-  const timerEl      = document.getElementById('timer');
-  const pdfContainer = document.getElementById('pdfContainer');
-  const backBtn      = document.getElementById('backButton');
+// Sélectionne un PDF au hasard
+const randomPdf = pdfs[Math.floor(Math.random() * pdfs.length)];
 
-  // Choisir un PDF aléatoire
-  if (pdfFiles.length > 0) {
-    const chosen = pdfFiles[Math.floor(Math.random() * pdfFiles.length)];
-    const iframe = document.createElement('iframe');
-    iframe.src   = 'pdfs/' + chosen;
-    iframe.title = 'Exercice PDF';
-    pdfContainer.appendChild(iframe);
-  } else {
-    // Message si aucun fichier PDF n'est renseigné
-    pdfContainer.innerHTML =
-      '<p style="color:#e0e0e0;">Aucun PDF configuré. Ajoutez vos fichiers dans le dossier <code>pdfs/</code> et mettez à jour la liste <code>pdfFiles</code> dans <code>script/math.js</code>.</p>';
-  }
+// Affiche le PDF dans la page
+const container = document.getElementById("pdfContainer");
+container.innerHTML = `
+  <iframe src="${randomPdf}" width="100%" height="600px" style="border: none;"></iframe>
+`;
 
-  // Chronomètre infini
-  let seconds = 0;
-  function updateTimer() {
-    seconds++;
-    const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
-    const secs = String(seconds % 60).padStart(2, '0');
-    timerEl.textContent = `${mins}:${secs}`;
-  }
-  setInterval(updateTimer, 1000);
+// Chronomètre infini qui démarre à 0
+let seconds = 0;
+const timer = document.getElementById("timer");
 
-  // Retour vers la roue
-  backBtn.addEventListener('click', () => {
-    window.location.href = 'index.html';
-  });
-})();
+function updateTimer() {
+  seconds++;
+  const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const sec = String(seconds % 60).padStart(2, '0');
+  timer.textContent = `${min}:${sec}`;
+}
+
+setInterval(updateTimer, 1000);
+
+// Bouton retour à la roue
+const backButton = document.getElementById("backButton");
+backButton.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
