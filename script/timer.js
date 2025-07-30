@@ -13,15 +13,15 @@ function runBreathingTimer() {
   const phase1 = Math.floor(Math.random() * 10) + 2;
   const phase2 = Math.floor(Math.random() * 12) + 5;
 
-  document.body.className = "phase1";
+  document.body.className = "phase-inhale";
   timerMessage.textContent = "Inspirez";
 
   setTimeout(() => {
-    document.body.className = "phase2";
+    document.body.className = "phase-hold";
     timerMessage.textContent = "Bloquez";
 
     setTimeout(() => {
-      document.body.className = "phase3";
+      document.body.className = "phase-exhale";
       timerMessage.textContent = "Soufflez";
 
       backButton.style.display = "block";

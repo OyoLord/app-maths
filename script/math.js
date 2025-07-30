@@ -9,8 +9,7 @@
 // IMPORTANT : Ajoutez ici les noms de vos fichiers PDF se trouvant dans le dossier « pdfs/ ».
 // Exemple : ['exercice1.pdf', 'exercice2.pdf']
 const pdfFiles = [
-  // 'mon-exercice1.pdf',
-  // 'mon-exercice2.pdf'
+  exercice1.pdf,
 ];
 
 (function() {

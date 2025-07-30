@@ -9,6 +9,7 @@
 const CACHE_NAME = 'roue-cache-v1';
 const URLS_TO_CACHE = [
   './',
+  './home.html',
   './index.html',
   './math.html',
   './timer.html',

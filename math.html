@@ -15,15 +15,16 @@
   <link rel="apple-touch-icon" href="icon.png">
   <title>Exercice de maths – TAGE MAGE</title>
 </head>
-<body>
-  <div id="exercise" role="region" aria-live="polite" style="margin: 20px; font-size: 1.2rem;"></div>
-  <button id="showAnswer">Afficher la réponse</button>
-  <div id="answer" style="margin-top: 20px; font-weight: bold; display: none;"></div>
-  <button id="backButton" style="display: block; margin-top: 30px;">Revenir à la roue</button>
-
+<body class="dark">
+  <div class="math-container">
+    <div id="timer" class="timer">00:00</div>
+    <div id="pdfContainer" class="pdf-wrapper">
+      <!-- Le PDF sélectionné apparaîtra ici -->
+    </div>
+    <button id="backButton" class="secondary">Retour à la roue</button>
+  </div>
   <script src="script/math.js"></script>
   <script>
-    // Enregistrement du service worker pour la PWA
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }

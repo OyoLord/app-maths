@@ -10,9 +10,13 @@
   <link rel="apple-touch-icon" href="icon.png">
   <title>Accueil</title>
 </head>
-<body>
-  <h1>Bienvenue !</h1>
-  <button onclick="location.href='home.html'">🎡 Accéder à la roue</button>
+<body class="dark">
+  <div class="container">
+    <h1 class="title">Bienvenue</h1>
+    <p class="subtitle">Testez votre chance…</p>
+    <!-- Lien vers la roue -->
+    <button class="primary" onclick="location.href='index.html'">Accéder à la roue</button>
+  </div>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');

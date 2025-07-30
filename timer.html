@@ -10,10 +10,12 @@
   <link rel="apple-touch-icon" href="icon.png">
   <title>Respiration guidée</title>
 </head>
-<body id="timerBody">
-  <div id="trapMessage" class="trap-flash">FULL PIÈGE</div>
-  <div id="timerMessage" style="font-family: 'Courier New', monospace; font-size: 2rem; margin: 20px; display: none;"></div>
-  <button id="backButton" style="display: none; margin-top: 30px;">Retour à la roue</button>
+<body class="dark">
+  <div class="timer-container">
+    <div id="trapMessage">FULL&nbsp;PIÈGE</div>
+    <div id="timerMessage" style="display:none; font-size:2rem;"></div>
+    <button id="backButton" class="secondary" style="display:none;">Retour à la roue</button>
+  </div>
   <script src="script/timer.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
